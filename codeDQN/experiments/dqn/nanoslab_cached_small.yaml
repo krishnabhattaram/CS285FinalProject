@@ -1,0 +1,4 @@
+base_config: dqn_basic
+env_name: NanoslabSiCachedEnvSmall-v0
+
+target_update_period: 1000

@@ -1,0 +1,15 @@
+# Use clipped double-Q learning (from TD3)
+base_config: dqn
+
+target_update_period: 1000
+
+initial_batch_size: 5000
+
+batch_size: 128
+discount: 0.99
+
+hidden_size: 3
+num_layers: 2
+
+num_agent_train_steps_per_iter: 50000
+mbpo_rollout_length: 1

@@ -1,0 +1,5 @@
+base_config: dqn_nanoslab
+env_name: NanoslabCachedEnv-v0
+
+target_update_period: 1000
+use_double_q: True
