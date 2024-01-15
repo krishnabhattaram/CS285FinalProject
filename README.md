@@ -1,6 +1,8 @@
 # Directory Organization
 codeDQN -- Contains the model-free approaches to RL for structure design
+
 codeMBPO -- Contains the model-based approach (including the distribution shift script) 
+
 Neural-Network-Materials -- Code outlining the SchNet architecture
 
 # Usage
