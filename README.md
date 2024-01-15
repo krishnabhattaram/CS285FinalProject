@@ -1,3 +1,5 @@
+Data for this repository is not included due to its large size. Contact krishnabhattaram@berkeley.edu for details
+
 # Directory Organization
 codeDQN -- Contains the model-free approaches to RL for structure design
 
