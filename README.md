@@ -5,7 +5,7 @@ codeDQN -- Contains the model-free approaches to RL for structure design
 
 codeMBPO -- Contains the model-based approach (including the distribution shift script) 
 
-Neural-Network-Materials -- Code outlining the SchNet architecture
+Neural-Network-Materials -- Code outlining the GNN architecture
 
 # Usage
 Use requirements.txt located in codeMBPO to configure required packages using PyPI
