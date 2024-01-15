@@ -82,13 +82,6 @@ class DOSModel(nn.Module):
         obs = ptu.from_numpy(obs[:, :self.num_state])
         dos = ptu.from_numpy(dos)
 
-        # TODO(student): update self.dynamics_models[i] using the given batch of data
-        # HINT: make sure to normalize the NN input (observations and actions)
-        # *and* train it with normalized outputs (observation deltas) 
-        # HINT 2: make sure to train it with observation *deltas*, not next_obs
-        # directly
-        # HINT 3: make sure to avoid any risk of dividing by zero when
-        # normalizing vectors by adding a small number to the denominator!
         norm_obs = (obs - self.obs_mean) / (self.obs_std + 1e-8)
         norm_dos = (dos - self.dos_mean) / (self.dos_std + 1e-8)
 
@@ -113,7 +106,7 @@ class DOSModel(nn.Module):
         """
         obs = ptu.from_numpy(obs[:, :self.num_state])
         dos = ptu.from_numpy(dos)
-        # TODO(student): update the statistics
+
         self.dos_std, self.dos_mean = torch.std_mean(dos, dim=0, keepdim=True)
         self.obs_std, self.obs_mean = torch.std_mean(obs, dim=0, keepdim=True)
 
@@ -131,10 +124,6 @@ class DOSModel(nn.Module):
         Returns: (batch_size, num_dos)
         """
         obs = ptu.from_numpy(obs[:, :self.num_state])
-        # TODO(student): get the model's predicted `next_obs`
-        # HINT: make sure to *unnormalize* the NN outputs (observation deltas)
-        # Same hints as `update` above, avoid nasty divide-by-zero errors when
-        # normalizing inputs!
         norm_obs = (obs - self.obs_mean) / (self.obs_std + 1e-8)
 
         predicted_norm_dos = self.dynamics_models[i](norm_obs)

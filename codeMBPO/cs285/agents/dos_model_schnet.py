@@ -169,13 +169,6 @@ class DOSModelSchnet(nn.Module):
         atom_dicts = self.env.get_atoms_dicts_from_obs(obs)
         dos = ptu.from_numpy(dos)
 
-        # TODO(student): update self.dynamics_models using the given batch of data
-        # HINT: make sure to normalize the NN input (observations and actions)
-        # *and* train it with normalized outputs (observation deltas) 
-        # HINT 2: make sure to train it with observation *deltas*, not next_obs
-        # directly
-        # HINT 3: make sure to avoid any risk of dividing by zero when
-        # normalizing vectors by adding a small number to the denominator!
         norm_dos = (dos - self.dos_mean) / (self.dos_std + 1e-8)
 
         batch = self._collate_aseatoms(atom_dicts)
@@ -201,7 +194,6 @@ class DOSModelSchnet(nn.Module):
         obs = ptu.from_numpy(obs[:, :self.num_state])
         dos = ptu.from_numpy(dos)
 
-        # TODO(student): update the statistics
         self.dos_std, self.dos_mean = torch.std_mean(dos, dim=0, keepdim=True)
         self.obs_std, self.obs_mean = torch.std_mean(obs, dim=0, keepdim=True)
 
@@ -219,11 +211,6 @@ class DOSModelSchnet(nn.Module):
         Returns: (batch_size, num_dos)
         """
         atom_dicts = self.env.get_atoms_dicts_from_obs(obs)
-
-        # TODO(student): get the model's predicted `next_obs`
-        # HINT: make sure to *unnormalize* the NN outputs (observation deltas)
-        # Same hints as `update` above, avoid nasty divide-by-zero errors when
-        # normalizing inputs!
         batch = self._collate_aseatoms(atom_dicts)
 
         predicted_norm_dos = self.dynamics_models(batch)['smooth_dos']

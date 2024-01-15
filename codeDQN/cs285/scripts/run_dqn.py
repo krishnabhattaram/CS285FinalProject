@@ -80,10 +80,7 @@ def run_training_loop(config: dict, logger: Logger, args: argparse.Namespace):
     for step in tqdm.trange(config["total_steps"], dynamic_ncols=True):
         epsilon = exploration_schedule.value(step)
         
-        # TODO(student): Compute action
         action = agent.get_action(observation, epsilon)
-
-        # TODO(student): Step the environment
         next_observation, reward, done, info = env.step(action)
 
         next_observation = np.asarray(next_observation)
